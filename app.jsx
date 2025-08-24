@@ -1,9 +1,10 @@
-import React, { useMemo, useState } from "react";
+// Usa React global fornecido pelo UMD
+const { useMemo, useState } = React;
 
 // --- Utils ---
 const brl = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
 
-export default function App() {
+function App() {
   const [tipo, setTipo] = useState("podcast");
   const [horas, setHoras] = useState(1);
   const [cortesRedes, setCortesRedes] = useState(0);
@@ -110,7 +111,10 @@ export default function App() {
           <h2 className="font-semibold mb-2">Resumo</h2>
           <div className="space-y-1 text-sm">
             {detalhes.map((d, idx) => (
-              <div key={idx} className="flex justify-between"><span className="text-gray-600">{d.split(":")[0]}</span><span>{d.split(":")[1]}</span></div>
+              <div key={idx} className="flex justify-between">
+                <span className="text-gray-600">{d.split(":")[0]}</span>
+                <span>{d.split(":")[1]}</span>
+              </div>
             ))}
             <Row label="Cortes" value={brl.format(valorCortes)} />
             <hr className="my-2" />
